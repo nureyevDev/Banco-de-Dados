@@ -1,4 +1,4 @@
-#  INNER JOIN — 15 questões
+#  INNER JOIN — 
 
 # 1 Liste o nome dos clientes e as datas de seus pedidos
 select clientes.nome, pedidos.Data_Venda 
@@ -139,7 +139,7 @@ GROUP BY
     produtos.Nome_Produto;
 
 
-# LEFT JOIN — 15 questões
+# LEFT JOIN — 
 
 # 1. Liste todas as categorias e seus produtos, incluindo categorias sem produto
 SELECT categorias.Categoria, produtos.Nome_Produto
@@ -245,7 +245,7 @@ LEFT JOIN produtos
 WHERE produtos.ID_Produto IS NULL;
 
 
-# RIGHT JOIN — 15 questões
+# RIGHT JOIN — 
 
 # 1. Liste todos os clientes e seus pedidos, preservando todos os clientes
 SELECT clientes.Nome, pedidos.ID_Pedido
@@ -355,7 +355,7 @@ RIGHT JOIN categorias
 WHERE produtos.ID_Produto IS NULL;
 
 
-# CROSS JOIN — 10 questões
+# CROSS JOIN — 
 
 # 1. Gere todas as combinações entre lojas e categorias
 SELECT
@@ -393,3 +393,186 @@ SELECT
     produtos.Nome_Produto
 FROM lojas
 CROSS JOIN produtos;
+
+
+# 4. Gere todas as combinações entre categorias e lojas e ordene por categoria e loja
+SELECT
+    categorias.Categoria,
+    lojas.Loja
+FROM categorias
+CROSS JOIN lojas
+ORDER BY categorias.Categoria, lojas.Loja;
+
+
+# FULL OUTER JOIN — compatibilidade com MySQL
+
+# 1. Liste todos os clientes e todos os pedidos, com ou sem correspondência.
+SELECT clientes.ID_Cliente, clientes.Nome, pedidos.ID_Pedido
+FROM clientes
+LEFT JOIN pedidos
+    ON clientes.ID_Cliente = pedidos.ID_Cliente
+
+UNION ALL
+
+SELECT clientes.ID_Cliente, clientes.Nome, pedidos.ID_Pedido
+FROM clientes
+RIGHT JOIN pedidos
+    ON clientes.ID_Cliente = pedidos.ID_Cliente
+WHERE clientes.ID_Cliente IS NULL;
+
+
+# 2. Exiba todos os produtos e todos os pedidos, com ou sem correspondência
+SELECT produtos.ID_Produto, produtos.Nome_Produto, pedidos.ID_Pedido
+FROM produtos
+LEFT JOIN pedidos
+    ON produtos.ID_Produto = pedidos.ID_Produto
+
+UNION ALL
+
+SELECT produtos.ID_Produto, produtos.Nome_Produto, pedidos.ID_Pedido
+FROM produtos
+RIGHT JOIN pedidos
+    ON produtos.ID_Produto = pedidos.ID_Produto
+WHERE produtos.ID_Produto IS NULL;
+
+
+# 3. Mostre todas as lojas e todos os pedidos
+SELECT lojas.ID_Loja, lojas.Loja, pedidos.ID_Pedido
+FROM lojas
+LEFT JOIN pedidos
+    ON lojas.ID_Loja = pedidos.ID_Loja
+
+UNION ALL
+
+SELECT lojas.ID_Loja, lojas.Loja, pedidos.ID_Pedido
+FROM lojas
+RIGHT JOIN pedidos
+    ON lojas.ID_Loja = pedidos.ID_Loja
+WHERE lojas.ID_Loja IS NULL;
+
+
+# 4. Liste todas as categorias e todos os produtos
+SELECT
+    categorias.ID_Categoria,
+    categorias.Categoria,
+    produtos.ID_Produto,
+    produtos.Nome_Produto
+FROM categorias
+LEFT JOIN produtos
+    ON categorias.ID_Categoria = produtos.ID_Categoria
+
+UNION ALL
+
+SELECT
+    categorias.ID_Categoria,
+    categorias.Categoria,
+    produtos.ID_Produto,
+    produtos.Nome_Produto
+FROM categorias
+RIGHT JOIN produtos
+    ON categorias.ID_Categoria = produtos.ID_Categoria
+WHERE categorias.ID_Categoria IS NULL;
+
+
+#  UNION e UNION ALL — 
+
+# 1. Una nomes de clientes e nomes de produtos em uma coluna Descricao, acrescentando uma coluna Tipo para indicar a origem.
+SELECT clientes.Nome AS Descricao, 'Cliente' AS Tipo
+FROM clientes
+
+UNION
+
+SELECT produtos.Nome_Produto AS Descricao, 'Produto' AS Tipo
+FROM produtos;
+
+
+# 2. Una nomes de lojas e categorias com a origem
+SELECT lojas.Loja AS Descricao, 'Loja' AS Tipo
+FROM lojas
+
+UNION
+
+SELECT categorias.Categoria AS Descricao, 'Categoria' AS Tipo
+FROM categorias;
+
+
+# 3. Una marcas e estados civis, removendo duplicatas
+SELECT produtos.Marca_Produto AS Descricao
+FROM produtos
+
+UNION
+
+SELECT clientes.Estado_Civil AS Descricao
+FROM clientes;
+
+
+# 4. Repita a questão anterior com UNION ALL
+SELECT produtos.Marca_Produto AS Descricao
+FROM produtos
+
+UNION ALL
+
+SELECT clientes.Estado_Civil AS Descricao
+FROM clientes;
+
+
+# 5. Una produtos abaixo de R$ 500 e acima de R$ 2.000
+SELECT
+    produtos.Nome_Produto,
+    produtos.Preco_Unit,
+    'Abaixo de R$ 500' AS Faixa_Preco
+FROM produtos
+WHERE produtos.Preco_Unit < 500
+
+UNION
+
+SELECT
+    produtos.Nome_Produto,
+    produtos.Preco_Unit,
+    'Acima de R$ 2.000' AS Faixa_Preco
+FROM produtos
+WHERE produtos.Preco_Unit > 2000;
+
+
+# 6. Una pedidos da loja 1 e da loja 2
+SELECT pedidos.ID_Pedido, pedidos.ID_Loja, pedidos.Receita_Venda
+FROM pedidos
+WHERE pedidos.ID_Loja = 1
+
+UNION
+
+SELECT pedidos.ID_Pedido, pedidos.ID_Loja, pedidos.Receita_Venda
+FROM pedidos
+WHERE pedidos.ID_Loja = 2;
+
+
+# 7. Repita a questão 6 com UNION ALL
+SELECT pedidos.ID_Pedido, pedidos.ID_Loja, pedidos.Receita_Venda
+FROM pedidos
+WHERE pedidos.ID_Loja = 1
+
+UNION ALL
+
+SELECT pedidos.ID_Pedido, pedidos.ID_Loja, pedidos.Receita_Venda
+FROM pedidos
+WHERE pedidos.ID_Loja = 2;
+
+
+# 8. Una clientes com renda abaixo de R$ 50.000 e acima de R$ 80.000
+SELECT
+    clientes.ID_Cliente,
+    clientes.Nome,
+    clientes.Renda_Anual,
+    'Abaixo de R$ 50.000' AS Faixa_Renda
+FROM clientes
+WHERE clientes.Renda_Anual < 50000
+
+UNION
+
+SELECT
+    clientes.ID_Cliente,
+    clientes.Nome,
+    clientes.Renda_Anual,
+    'Acima de R$ 80.000' AS Faixa_Renda
+FROM clientes
+WHERE clientes.Renda_Anual > 80000;
