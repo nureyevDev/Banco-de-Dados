@@ -1,14 +1,58 @@
 USE `banco`;
 DROP TABLE IF EXISTS `vendedores`;
 
-CREATE TABLE  `vendedores` (
-	`ID_Vendedor` INT PRIMARY KEY,
-	`Nome` VARCHAR(50) NOT NULL,
-	`Sobrenome` VARCHAR(100),
-	`Email` VARCHAR(100),
-	`Data_Nascimento` DATE,
-	`ID_Loja` INT NOT NULL
-);
+CREATE TABLE `vendedores` (
+  `ID_Vendedor` INT PRIMARY KEY,
+  `Nome` VARCHAR(100) NOT NULL,
+  `Email` VARCHAR(150),
+  `Data_Nascimento` DATE,
+  `ID_Loja` INT NOT NULL
+) ;
 
-
+INSERT INTO `vendedores` VALUES
+(1, 'Maria Oliveira', 'maria@email.com', '1992-03-15', 1),
+(2, 'Jose da Silva', 'Jose@email.com', '1994-02-25', 2),
+(4, 'Antonio Costa', 'Antonio@email.com', '1990-12-01', 2),
+(5, 'Fulano de Tal', 'fulano@email.com', '1998-05-15', 3),
+(6, 'Marta da Silva', 'Marta@email.com', '1996-10-11', 4),
+(7, 'Bruna Azevedo', 'bruna.azevedo@exemplo.com', '1992-01-15', 1),
+(8, 'Rogério Nunes', 'rogerio.nunes@exemplo.com', '1987-07-11', 1),
+(9, 'Camila Duarte', 'camila.duarte@exemplo.com', '1994-05-18', 2),
+(10, 'Eduardo Silveira', 'eduardo.silveira@exemplo.com', '1989-12-30', 2),
+(11, 'Patrícia Andrade', 'patricia.andrade@exemplo.com', '1993-08-21', 3),
+(12, 'Carlos Mendes', 'carlos.mendes@exemplo.com', '1985-09-10', 3),
+(13, 'Mariana Lopes', 'mariana.lopes@exemplo.com', '1991-04-03', 4),
+(14, 'Felipe Carvalho', 'felipe.carvalho@exemplo.com', '1990-06-14', 4),
+(15, 'Tatiane Fernandes', 'tatiane.fernandes@exemplo.com', '1995-02-27', 5),
+(16, 'Henrique Souza', 'henrique.souza@exemplo.com', '1986-03-12', 5),
+(17, 'Juliana Pinto', 'juliana.pinto@exemplo.com', '1994-11-22', 6),
+(18, 'Bruno Reis', 'bruno.reis@exemplo.com', '1988-10-01', 6),
+(19, 'Larissa Nogueira', 'larissa.nogueira@exemplo.com', '1992-09-17', 7),
+(20, 'Marcelo Rocha', 'marcelo.rocha@exemplo.com', '1990-05-06', 7),
+(21, 'Jéssica Leite', 'jessica.leite@exemplo.com', '1991-03-25', 8),
+(22, 'Leonardo Castro', 'leonardo.castro@exemplo.com', '1987-07-29', 8),
+(23, 'Amanda Barros', 'amanda.barros@exemplo.com', '1996-01-09', 1),
+(24, 'Vinicius Silva', 'vinicius.silva@exemplo.com', '1989-12-12', 1),
+(25, 'Cláudia Ribeiro', 'claudia.ribeiro@exemplo.com', '1993-04-02', 2),
+(26, 'Tiago Fernandes', 'tiago.fernandes@exemplo.com', '1985-08-20', 2),
+(27, 'Letícia Monteiro', 'leticia.monteiro@exemplo.com', '1990-10-18', 3),
+(28, 'Anderson Oliveira', 'anderson.oliveira@exemplo.com', '1992-06-26', 3),
+(29, 'Carolina Costa', 'carolina.costa@exemplo.com', '1988-11-13', 4),
+(30, 'Renato Martins', 'renato.martins@exemplo.com', '1991-01-30', 4),
+(31, 'Nathália Lima', 'nathalia.lima@exemplo.com', '1994-02-19', 5),
+(32, 'João Almeida', 'joao.almeida@exemplo.com', '1986-07-07', 5),
+(33, 'Vanessa Melo', 'vanessa.melo@exemplo.com', '1995-09-23', 6),
+(34, 'Diego Ramos', 'diego.ramos@exemplo.com', '1993-12-17', 6),
+(35, 'Bárbara Tavares', 'barbara.tavares@exemplo.com', '1992-03-11', 7),
+(36, 'Lucas Lima', 'lucas.lima@exemplo.com', '1987-08-03', 7),
+(37, 'Cristina Martins', 'cristina.martins@exemplo.com', '1990-05-15', 8),
+(38, 'Ricardo Torres', 'ricardo.torres@exemplo.com', '1989-02-01', 8),
+(39, 'Juliane Bastos', 'juliane.bastos@exemplo.com', '1996-10-29', 1),
+(40, 'Alan Viana', 'alan.viana@exemplo.com', '1991-06-07', 2),
+(41, 'Débora Souza', 'debora.souza@exemplo.com', '1988-09-12', 3),
+(42, 'Fábio Corrêa', 'fabio.correa@exemplo.com', '1990-11-08', 4),
+(43, 'Isadora Freitas', 'isadora.freitas@exemplo.com', '1995-04-28', 5),
+(44, 'Marcela Duarte', 'marcela.duarte@exemplo.com', '1993-06-10', 6),
+(45, 'Renan Silva', 'renan.silva@exemplo.com', '1987-12-24', 7),
+(46, 'Elaine Rocha', 'elaine.rocha@exemplo.com', '1992-07-01', 8);
 
